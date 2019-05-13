@@ -14,8 +14,25 @@ let handleClick = (_event) => Js.log("clicked!");
      Component1.make,
      Component1.makeProps(~message="hello", ())
    )` */
+
+
+  let myOptions = { 
+    open ReactSelect;
+    [|
+    { value: "chocolate", label: "Chocolate" },
+    { value: "strawberry", label: "Strawberry" },
+    { value: "vanilla", label: "Vanilla" }
+  |];
+  };
+
 [@react.component]
-let make = (~message) =>
-  <div onClick={handleClick}>
-    {ReasonReact.string(message)}
-  </div>;
+let make = (~message) => {
+  //open ReactSelect;
+
+
+  <div>
+    //{ReactSelect.make(myOptions)}
+    <ReactSelect options={myOptions} />
+    //<Foo options=myOptions />
+  </div>
+}
