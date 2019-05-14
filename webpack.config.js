@@ -17,6 +17,18 @@ module.exports = {
       inject: false
     })
   ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use:['style-loader', 'css-loader']
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-url-loader'
+      }
+    ]
+  },
   devServer: {
     compress: true,
     contentBase: outputDir,
