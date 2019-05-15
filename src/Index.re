@@ -1,4 +1,3 @@
-
 [%raw {|require('../../../src/style.css')|}]
 
 module Example = {

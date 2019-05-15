@@ -40,7 +40,7 @@ let make = (~className, ~country, ~onChange) => {
     let toggleOpen = _ => setIsOpen(isOpen => !isOpen);
     let (value, setValue) = React.useState(() => None);
     let (options, setOptions) = React.useState(() => [||]);
-    // TODO loading/error handling
+
     React.useEffect1(() => {
         Js.Promise.(
             fetchOptions(countryUrl)
@@ -61,7 +61,6 @@ let make = (~className, ~country, ~onChange) => {
     }, [||])
 
     let jsChange = (jsOption, _action) => {
-        // TODO check that _action was 'select option'
         let option = ReactSelect.optionFromJs(jsOption);
         setValue(_ => Some(option))
         toggleOpen()
@@ -88,11 +87,7 @@ let make = (~className, ~country, ~onChange) => {
         />;
 
     <div className={className} >
-        <button
-            //iconAfter={<ChevronDown />}
-            onClick=toggleOpen
-            //isSelected={isOpen}
-        >
+        <button onClick=toggleOpen >
             {switch(value) {
                 | Some(value) => React.string(value.ReactSelect.label)
                 | None => React.string("Select country")

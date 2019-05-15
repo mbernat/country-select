@@ -1,9 +1,6 @@
 [@bs.deriving {jsConverter: newType}]
 type option = { value: string, label: string };
 
-type valueType = int;
-type actionMeta = int;
-
 [@bs.deriving {jsConverter: newType}]
 type filterConfig = {
   ignoreCase: bool,
@@ -14,40 +11,6 @@ type filter;
 
 [@bs.module "react-select"]
 external create_filter : abs_filterConfig => filter = "createFilter";
-
-type components('a) = {
-  .
-  "Option": 'a
-}
-
-/*
-
-export type OptionType = {
-  [string]: any,
-};
-
-export type OptionsType = Array<OptionType>;
-
-export type GroupType = {
-  options: OptionsType,
-  [string]: any,
-};
-
-export type ValueType = OptionType | OptionsType | null | void;
-
-export type ActionTypes =
-  | 'select-option'
-  | 'deselect-option'
-  | 'remove-value'
-  | 'pop-value'
-  | 'set-value'
-  | 'clear'
-  | 'create-option';
-
-export type ActionMeta = {
-  action: ActionTypes,
-};
-*/
 
 module Option = {
   [@bs.module "react-select/lib/components/Option"][@react.component]
@@ -63,7 +26,7 @@ module External = {
         ~controlShouldRenderValue: bool=?,
         ~filterOption: filter=?,
         ~menuIsOpen: bool=?,
-        ~onChange: (abs_option, actionMeta) => unit=?,
+        ~onChange: (abs_option, 'actionMeta) => unit=?,
         ~options: array(abs_option),
         ~placeholder: string=?,
         ~value: abs_option=?,
